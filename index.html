@@ -129,6 +129,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             padding: 20px 0;
             height: fit-content;
+            display: none; /* Hidden by default on start page */
+        }
+
+        .sidebar.visible {
+            display: block; /* Show when needed */
         }
 
         .sidebar h3 {
@@ -207,6 +212,172 @@
             margin-top: 5px;
         }
 
+        /* START PAGE - Full Screen Landing Page */
+        .start-page {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .start-card {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+        }
+
+        .start-card h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .start-card h2 {
+            font-size: 28px;
+            color: #3498db;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .start-card p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .start-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #3498db, #2c80b9);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(90deg, #2c80b9, #216794);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.5);
+        }
+
+        .start-btn:active {
+            transform: translateY(-2px) scale(1);
+        }
+
+        .start-btn i {
+            margin-right: 12px;
+        }
+
+        .lab-info {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 15px;
+            max-width: 600px;
+        }
+
+        .lab-info strong {
+            color: #2c3e50;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+            max-width: 900px;
+        }
+
+        .feature {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature i {
+            font-size: 32px;
+            color: #3498db;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature h4 {
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-size: 20px;
+        }
+
+        .feature p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Home button in sidebar */
+        .home-btn {
+            margin: 15px 20px;
+            padding: 12px 20px;
+            background: linear-gradient(to right, #3498db, #2c80b9);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: linear-gradient(to right, #2c80b9, #216794);
+            transform: translateY(-2px);
+        }
+
         /* Aim Sections */
         .aim-sections {
             display: grid;
@@ -252,6 +423,7 @@
             font-size: 14px;
             color: #7f8c8d;
         }
+        
 
         /* Section Content Styling */
         .section-content {
@@ -765,6 +937,27 @@
             .contributor-list {
                 grid-template-columns: 1fr;
             }
+            
+            .start-card {
+                padding: 30px 20px;
+            }
+            
+            .start-card h1 {
+                font-size: 28px;
+            }
+            
+            .start-card h2 {
+                font-size: 22px;
+            }
+            
+            .start-btn {
+                padding: 16px 30px;
+                font-size: 18px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -806,11 +999,14 @@
     </header>
 
     <div class="container main-content">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
+        <!-- Sidebar Navigation - Hidden on start page -->
+        <aside class="sidebar" id="sidebar">
+            <button class="home-btn" id="go-home-btn">
+                <i class="fas fa-home"></i> Back to Home
+            </button>
             <h3>Navigation Menu</h3>
             <ul class="nav-menu">
-                <li class="nav-item active" data-section="aim">
+                <li class="nav-item" data-section="aim">
                     <i class="fas fa-bullseye"></i>
                     <span>Aim</span>
                 </li>
@@ -847,397 +1043,454 @@
 
         <!-- Content Area -->
         <main class="content">
-            <div class="content-header">
-                <div class="breadcrumb">
-                    <a href="#">Home</a> / <a href="#">Mathematics</a> / <a href="#">Differential Equations</a> / <span>Exact Differential Equations</span>
-                </div>
-                <h2>Exact Differential Equations</h2>
-                <p>A Virtual Lab on Solving Exact Differential Equations Step-by-Step</p>
-            </div>
-
-            <!-- Aim Section Content -->
-            <div class="section-content aim-content active" id="aim-content">
-                <h3>Experiment Aim</h3>
-                <p>The aim of this virtual lab experiment is to understand and solve exact differential equations using computational methods.</p>
-                
-                <h3>Learning Objectives</h3>
-                <ul>
-                    <li>Understand the concept of exact differential equations</li>
-                    <li>Learn to identify exact differential equations by checking the condition \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\)</li>
-                    <li>Solve exact differential equations step-by-step</li>
-                    <li>Apply integration techniques to find the solution function ψ(x, y)</li>
-                    <li>Interpret the solution in the context of mathematical modeling</li>
-                </ul>
-                
-                <h3>Prerequisites</h3>
-                <ul>
-                    <li>Basic knowledge of differential equations</li>
-                    <li>Understanding of partial derivatives</li>
-                    <li>Familiarity with integration techniques</li>
-                    <li>Basic algebraic manipulation skills</li>
-                </ul>
-                
-                <div class="math-equation">
-                    \[ M(x, y)dx + N(x, y)dy = 0 \]
-                </div>
-                
-                <h3>Equipment Needed</h3>
-                <p>For this virtual lab, you only need a computer with internet access. The simulation tool will handle all mathematical computations.</p>
-            </div>
-
-            <!-- Theory Section Content -->
-            <div class="section-content theory-content" id="theory-content">
-                <h3>What are Exact Differential Equations?</h3>
-                <p>An exact differential equation is a differential equation of the form:</p>
-                <div class="math-equation">
-                    \[ M(x, y)dx + N(x, y)dy = 0 \]
-                </div>
-                <p>where there exists a function ψ(x, y) such that:</p>
-                <div class="math-equation">
-                    \[ \frac{\partial \psi}{\partial x} = M(x, y) \quad \text{and} \quad \frac{\partial \psi}{\partial y} = N(x, y) \]
-                </div>
-                
-                <h3>Exactness Condition</h3>
-                <p>The necessary and sufficient condition for the differential equation to be exact is:</p>
-                <div class="math-equation">
-                    \[ \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \]
-                </div>
-                <p>This condition must hold at all points in the region of interest.</p>
-                
-                <h3>Solution Method</h3>
-                <p>If the equation is exact, the solution can be found by:</p>
-                <ol>
-                    <li>Integrate M(x, y) with respect to x, treating y as constant:
-                        \[ \psi(x, y) = \int M(x, y) dx + g(y) \]
-                    </li>
-                    <li>Differentiate the result with respect to y:
-                        \[ \frac{\partial \psi}{\partial y} = \frac{\partial}{\partial y} \left( \int M(x, y) dx \right) + g'(y) \]
-                    </li>
-                    <li>Set this equal to N(x, y) and solve for g'(y):
-                        \[ N(x, y) = \frac{\partial}{\partial y} \left( \int M(x, y) dx \right) + g'(y) \]
-                    </li>
-                    <li>Integrate g'(y) to find g(y)</li>
-                    <li>The solution is given by ψ(x, y) = C, where C is a constant</li>
-                </ol>
-                
-                <h3>Examples of Exact Differential Equations</h3>
-                <div class="math-equation">
-                    \[ (2xy + y^2)dx + (x^2 + 2xy)dy = 0 \]
-                </div>
-                <div class="math-equation">
-                    \[ (y\cos x + 2x)dx + (\sin x + 2y)dy = 0 \]
-                </div>
-                <div class="math-equation">
-                    \[ (6xy + y^3)dx + (3x^2 + 3xy^2)dy = 0 \]
-                </div>
-                
-                <h3>Applications</h3>
-                <p>Exact differential equations have applications in:</p>
-                <ul>
-                    <li>Physics: Thermodynamics, fluid dynamics</li>
-                    <li>Engineering: Control systems, circuit analysis</li>
-                    <li>Economics: Modeling economic growth</li>
-                    <li>Biology: Population dynamics</li>
-                </ul>
-            </div>
-
-            <!-- Pretest Section Content -->
-            <div class="section-content pretest-content" id="pretest-content">
-                <h3>Pre-Experiment Assessment</h3>
-                <p>Test your understanding before proceeding to the simulation. Select the correct answer for each question.</p>
-                
-                <div class="question">
-                    <h4>Question 1: What is the condition for a differential equation Mdx + Ndy = 0 to be exact?</h4>
-                    <div class="options">
-                        <div class="option" data-correct="true">∂M/∂y = ∂N/∂x</div>
-                        <div class="option">∂M/∂x = ∂N/∂y</div>
-                        <div class="option">M = N</div>
-                        <div class="option">∂M/∂y = -∂N/∂x</div>
+            <!-- Starting Page - Shown by default -->
+            <div class="start-page active" id="start-page">
+                <div class="start-card">
+                    <h1>Virtual Lab on</h1>
+                    <h2>Exact Differential Equations</h2>
+                    <p>An interactive virtual laboratory designed to help students understand and solve exact differential equations using computational methods and step-by-step solutions.</p>
+                    
+                    <button class="start-btn" id="start-lab-btn">
+                        <i class="fas fa-play-circle"></i> Launch Exact DE Solver
+                    </button>
+                    
+                    <div class="lab-info">
+                        <p><strong>Virtual Lab:</strong> © 2025 | Applied Sciences & Humanities Department | <strong>Pimpri Chinchwad College of Engineering</strong></p>
                     </div>
                 </div>
                 
-                <div class="question">
-                    <h4>Question 2: If ψ(x, y) is the solution function of an exact differential equation, which of the following is true?</h4>
-                    <div class="options">
-                        <div class="option">∂ψ/∂x = 0</div>
-                        <div class="option" data-correct="true">∂ψ/∂x = M and ∂ψ/∂y = N</div>
-                        <div class="option">ψ(x, y) = M + N</div>
-                        <div class="option">∂ψ/∂y = 0</div>
-                    </div>
-                </div>
-                
-                <div class="question">
-                    <h4>Question 3: Which of the following is an exact differential equation?</h4>
-                    <div class="options">
-                        <div class="option">(x + y)dx + (x - y)dy = 0</div>
-                        <div class="option">(2x + y)dx + (x - 2y)dy = 0</div>
-                        <div class="option" data-correct="true">(2xy + y^2)dx + (x^2 + 2xy)dy = 0</div>
-                        <div class="option">(sin x)dx + (cos y)dy = 0</div>
-                    </div>
-                </div>
-                
-                <button class="submit-btn" id="submit-pretest">Submit Pretest</button>
-                <div id="pretest-result" style="display: none; margin-top: 20px; padding: 15px; background-color: #e8f4fc; border-radius: 8px;"></div>
-            </div>
-
-            <!-- Simulation Section Content -->
-            <div class="section-content simulation-content" id="simulation-content">
-                <h3>Exact Differential Equation Solver</h3>
-                <p>Use this interactive tool to solve exact differential equations step-by-step. Enter your equation in the form M(x,y)dx + N(x,y)dy = 0.</p>
-                
-                <div class="solver-container">
-                    <div class="solver-header">
-                        <i class="fas fa-calculator"></i>
-                        <h3>Exact Differential Equation Solver</h3>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Learning Objectives</h4>
+                        <p>Understand exact differential equations, learn to identify them, and solve step-by-step using integration techniques.</p>
                     </div>
                     
-                    <div class="equation-form">
-                        <div class="form-group">
-                            <label for="m-function">M(x, y) - Multiply with dx:</label>
-                            <input type="text" id="m-function" class="solver-input" placeholder="e.g., 2*x*y^3 - 4*x^3" value="2*x*y^3 - 4*x^3">
+                    <div class="feature">
+                        <i class="fas fa-calculator"></i>
+                        <h4>Interactive Solver</h4>
+                        <p>Use our interactive tool to solve exact differential equations with step-by-step guidance and explanations.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Assessment Tools</h4>
+                        <p>Test your knowledge with pre and post-experiment assessments to track your learning progress.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lab Sections - Hidden by default -->
+            <div class="lab-sections" id="lab-sections" style="display: none;">
+                <div class="content-header">
+                    <div class="breadcrumb">
+                        <a href="#" id="breadcrumb-home">Home</a> / <a href="#">Mathematics</a> / <a href="#">Differential Equations</a> / <span>Exact Differential Equations</span>
+                    </div>
+                    <h2>Exact Differential Equations</h2>
+                    <p>A Virtual Lab on Solving Exact Differential Equations Step-by-Step</p>
+                </div>
+
+                <!-- Aim Section Content -->
+                <div class="section-content aim-content" id="aim-content">
+                    <h3>Experiment Aim</h3>
+                    <p>The aim of this virtual lab experiment is to understand and solve exact differential equations using computational methods.</p>
+                    
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand the concept of exact differential equations</li>
+                        <li>Learn to identify exact differential equations by checking the condition \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\)</li>
+                        <li>Solve exact differential equations step-by-step</li>
+                        <li>Apply integration techniques to find the solution function ψ(x, y)</li>
+                        <li>Interpret the solution in the context of mathematical modeling</li>
+                    </ul>
+                    
+                    <h3>Prerequisites</h3>
+                    <ul>
+                        <li>Basic knowledge of differential equations</li>
+                        <li>Understanding of partial derivatives</li>
+                        <li>Familiarity with integration techniques</li>
+                        <li>Basic algebraic manipulation skills</li>
+                    </ul>
+                    
+                    <div class="math-equation">
+                        \[ M(x, y)dx + N(x, y)dy = 0 \]
+                    </div>
+                    
+                    <h3>Equipment Needed</h3>
+                    <p>For this virtual lab, you only need a computer with internet access. The simulation tool will handle all mathematical computations.</p>
+                </div>
+
+                <!-- Theory Section Content -->
+                <div class="section-content theory-content" id="theory-content">
+                    <h3>What are Exact Differential Equations?</h3>
+                    <p>An exact differential equation is a differential equation of the form:</p>
+                    <div class="math-equation">
+                        \[ M(x, y)dx + N(x, y)dy = 0 \]
+                    </div>
+                    <p>where there exists a function ψ(x, y) such that:</p>
+                    <div class="math-equation">
+                        \[ \frac{\partial \psi}{\partial x} = M(x, y) \quad \text{and} \quad \frac{\partial \psi}{\partial y} = N(x, y) \]
+                    </div>
+                    
+                    <h3>Exactness Condition</h3>
+                    <p>The necessary and sufficient condition for the differential equation to be exact is:</p>
+                    <div class="math-equation">
+                        \[ \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \]
+                    </div>
+                    <p>This condition must hold at all points in the region of interest.</p>
+                    
+                    <h3>Solution Method</h3>
+                    <p>If the equation is exact, the solution can be found by:</p>
+                    <ol>
+                        <li>Integrate M(x, y) with respect to x, treating y as constant:
+                            \[ \psi(x, y) = \int M(x, y) dx + g(y) \]
+                        </li>
+                        <li>Differentiate the result with respect to y:
+                            \[ \frac{\partial \psi}{\partial y} = \frac{\partial}{\partial y} \left( \int M(x, y) dx \right) + g'(y) \]
+                        </li>
+                        <li>Set this equal to N(x, y) and solve for g'(y):
+                            \[ N(x, y) = \frac{\partial}{\partial y} \left( \int M(x, y) dx \right) + g'(y) \]
+                        </li>
+                        <li>Integrate g'(y) to find g(y)</li>
+                        <li>The solution is given by ψ(x, y) = C, where C is a constant</li>
+                    </ol>
+                    
+                    <h3>Examples of Exact Differential Equations</h3>
+                    <div class="math-equation">
+                        \[ (2xy + y^2)dx + (x^2 + 2xy)dy = 0 \]
+                    </div>
+                    <div class="math-equation">
+                        \[ (y\cos x + 2x)dx + (\sin x + 2y)dy = 0 \]
+                    </div>
+                    <div class="math-equation">
+                        \[ (6xy + y^3)dx + (3x^2 + 3xy^2)dy = 0 \]
+                    </div>
+                    
+                    <h3>Applications</h3>
+                    <p>Exact differential equations have applications in:</p>
+                    <ul>
+                        <li>Physics: Thermodynamics, fluid dynamics</li>
+                        <li>Engineering: Control systems, circuit analysis</li>
+                        <li>Economics: Modeling economic growth</li>
+                        <li>Biology: Population dynamics</li>
+                    </ul>
+                </div>
+
+                <!-- Pretest Section Content -->
+                <div class="section-content pretest-content" id="pretest-content">
+                    <h3>Pre-Experiment Assessment</h3>
+                    <p>Test your understanding before proceeding to the simulation. Select the correct answer for each question.</p>
+                    
+                    <div class="question">
+                        <h4>Question 1: What is the condition for a differential equation Mdx + Ndy = 0 to be exact?</h4>
+                        <div class="options">
+                            <div class="option" data-correct="true">∂M/∂y = ∂N/∂x</div>
+                            <div class="option">∂M/∂x = ∂N/∂y</div>
+                            <div class="option">M = N</div>
+                            <div class="option">∂M/∂y = -∂N/∂x</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <h4>Question 2: If ψ(x, y) is the solution function of an exact differential equation, which of the following is true?</h4>
+                        <div class="options">
+                            <div class="option">∂ψ/∂x = 0</div>
+                            <div class="option" data-correct="true">∂ψ/∂x = M and ∂ψ/∂y = N</div>
+                            <div class="option">ψ(x, y) = M + N</div>
+                            <div class="option">∂ψ/∂y = 0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <h4>Question 3: Which of the following is an exact differential equation?</h4>
+                        <div class="options">
+                            <div class="option">(x + y)dx + (x - y)dy = 0</div>
+                            <div class="option">(2x + y)dx + (x - 2y)dy = 0</div>
+                            <div class="option" data-correct="true">(2xy + y^2)dx + (x^2 + 2xy)dy = 0</div>
+                            <div class="option">(sin x)dx + (cos y)dy = 0</div>
+                        </div>
+                    </div>
+                    
+                    <button class="submit-btn" id="submit-pretest">Submit Pretest</button>
+                    <div id="pretest-result" style="display: none; margin-top: 20px; padding: 15px; background-color: #e8f4fc; border-radius: 8px;"></div>
+                </div>
+
+                <!-- Simulation Section Content -->
+                <div class="section-content simulation-content active" id="simulation-content">
+                    <h3>Exact Differential Equation Solver</h3>
+                    <p>Use this interactive tool to solve exact differential equations step-by-step. Enter your equation in the form M(x,y)dx + N(x,y)dy = 0.</p>
+                    
+                    <div class="solver-container">
+                        <div class="solver-header">
+                            <i class="fas fa-calculator"></i>
+                            <h3>Exact Differential Equation Solver</h3>
+                        </div>
+                        
+                        <div class="equation-form">
+                            <div class="form-group">
+                                <label for="m-function">M(x, y) - Multiply with dx:</label>
+                                <input type="text" id="m-function" class="solver-input" placeholder="e.g., 2*x*y^3 - 4*x^3" value="2*x*y^3 - 4*x^3">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="n-function">N(x, y) - Multiply with dy:</label>
+                                <input type="text" id="n-function" class="solver-input" placeholder="e.g., x^2*y^2 + exp(y)" value="x^2*y^2 + exp(y)">
+                            </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="n-function">N(x, y) - Multiply with dy:</label>
-                            <input type="text" id="n-function" class="solver-input" placeholder="e.g., x^2*y^2 + exp(y)" value="x^2*y^2 + exp(y)">
+                            <label>Try examples:</label>
+                            <div class="example-buttons">
+                                <button class="example-btn" onclick="loadExample(0)">Example 1</button>
+                                <button class="example-btn" onclick="loadExample(1)">Example 2</button>
+                                <button class="example-btn" onclick="loadExample(2)">Example 3</button>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Try examples:</label>
-                        <div class="example-buttons">
-                            <button class="example-btn" onclick="loadExample(0)">Example 1</button>
-                            <button class="example-btn" onclick="loadExample(1)">Example 2</button>
-                            <button class="example-btn" onclick="loadExample(2)">Example 3</button>
+                        
+                        <button class="solve-btn" onclick="solveEquation()">
+                            <i class="fas fa-play-circle"></i> Solve Step-by-Step
+                        </button>
+                        
+                        <div class="loading" id="loading">
+                            <div class="spinner"></div>
+                            <p>Solving equation step-by-step...</p>
                         </div>
-                    </div>
-                    
-                    <button class="solve-btn" onclick="solveEquation()">
-                        <i class="fas fa-play-circle"></i> Solve Step-by-Step
-                    </button>
-                    
-                    <div class="loading" id="loading">
-                        <div class="spinner"></div>
-                        <p>Solving equation step-by-step...</p>
-                    </div>
-                    
-                    <div class="solution-steps" id="solution-steps">
-                        <div class="step">
-                            <div class="step-title">Welcome to the Exact Differential Equation Solver</div>
-                            <div class="explanation">
-                                <p>This tool will solve exact differential equations of the form:</p>
-                                <div class="math-display">\[ M(x, y)dx + N(x, y)dy = 0 \]</div>
-                                <p>Enter your equation in the input fields and click "Solve Step-by-Step" to see the complete solution.</p>
+                        
+                        <div class="solution-steps" id="solution-steps">
+                            <div class="step">
+                                <div class="step-title">Welcome to the Exact Differential Equation Solver</div>
+                                <div class="explanation">
+                                    <p>This tool will solve exact differential equations of the form:</p>
+                                    <div class="math-display">\[ M(x, y)dx + N(x, y)dy = 0 \]</div>
+                                    <p>Enter your equation in the input fields and click "Solve Step-by-Step" to see the complete solution.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <h3>How to Use the Solver</h3>
+                    <ol>
+                        <li>Enter M(x,y) and N(x,y) functions in the input fields</li>
+                        <li>Use 'x' and 'y' as variables, '^' for exponentiation</li>
+                        <li>Use exp() for exponential function, sin() and cos() for trigonometric functions</li>
+                        <li>Click "Solve Step-by-Step" to see the complete solution</li>
+                        <li>Follow each step of the solution process</li>
+                        <li>Try different examples to understand various cases</li>
+                    </ol>
                 </div>
-                
-                <h3>How to Use the Solver</h3>
-                <ol>
-                    <li>Enter M(x,y) and N(x,y) functions in the input fields</li>
-                    <li>Use 'x' and 'y' as variables, '^' for exponentiation</li>
-                    <li>Use exp() for exponential function, sin() and cos() for trigonometric functions</li>
-                    <li>Click "Solve Step-by-Step" to see the complete solution</li>
-                    <li>Follow each step of the solution process</li>
-                    <li>Try different examples to understand various cases</li>
-                </ol>
-            </div>
 
-            <!-- Posttest Section Content -->
-            <div class="section-content posttest-content" id="posttest-content">
-                <h3>Post-Experiment Assessment</h3>
-                <p>Test your understanding after completing the simulation. Select the correct answer for each question.</p>
-                
-                <div class="question">
-                    <h4>Question 1: For the equation (3x²y + y³)dx + (x³ + 3xy²)dy = 0, what is ∂M/∂y?</h4>
-                    <div class="options">
-                        <div class="option">3x²</div>
-                        <div class="option" data-correct="true">3x² + 3y²</div>
-                        <div class="option">3y²</div>
-                        <div class="option">6xy</div>
-                    </div>
-                </div>
-                
-                <div class="question">
-                    <h4>Question 2: If M(x,y) = 2xy and N(x,y) = x², is the equation exact?</h4>
-                    <div class="options">
-                        <div class="option" data-correct="true">Yes, because ∂M/∂y = 2x and ∂N/∂x = 2x</div>
-                        <div class="option">No, because ∂M/∂y ≠ ∂N/∂x</div>
-                        <div class="option">Only for specific values of x and y</div>
-                        <div class="option">Cannot be determined</div>
-                    </div>
-                </div>
-                
-                <div class="question">
-                    <h4>Question 3: In the solution of an exact differential equation, what does g(y) represent?</h4>
-                    <div class="options">
-                        <div class="option">The derivative of M with respect to y</div>
-                        <div class="option">The constant of integration when integrating N</div>
-                        <div class="option" data-correct="true">The "constant" of integration when integrating M with respect to x</div>
-                        <div class="option">The solution of the differential equation</div>
-                    </div>
-                </div>
-                
-                <div class="question">
-                    <h4>Question 4: What is the general solution of an exact differential equation?</h4>
-                    <div class="options">
-                        <div class="option">y = f(x) + C</div>
-                        <div class="option">M(x,y) = N(x,y)</div>
-                        <div class="option" data-correct="true">ψ(x,y) = C, where C is a constant</div>
-                        <div class="option">∂ψ/∂x = 0</div>
-                    </div>
-                </div>
-                
-                <button class="submit-btn" id="submit-posttest">Submit Posttest</button>
-                <div id="posttest-result" style="display: none; margin-top: 20px; padding: 15px; background-color: #e8f4fc; border-radius: 8px;"></div>
-            </div>
-
-            <!-- References Section Content -->
-            <div class="section-content references-content" id="references-content">
-                <h3>Recommended Textbooks</h3>
-                <ul>
-                    <li>Boyce, W. E., & DiPrima, R. C. (2012). Elementary Differential Equations and Boundary Value Problems. John Wiley & Sons.</li>
-                    <li>Zill, D. G. (2012). A First Course in Differential Equations with Modeling Applications. Cengage Learning.</li>
-                    <li>Kreyszig, E. (2011). Advanced Engineering Mathematics. John Wiley & Sons.</li>
-                    <li>Simmons, G. F. (2016). Differential Equations with Applications and Historical Notes. CRC Press.</li>
-                </ul>
-                
-                <h3>Online Resources</h3>
-                <ul>
-                    <li>Khan Academy: Differential Equations - <a href="https://www.khanacademy.org/math/differential-equations" target="_blank">https://www.khanacademy.org/math/differential-equations</a></li>
-                    <li>MIT OpenCourseWare: Differential Equations - <a href="https://ocw.mit.edu/courses/mathematics/18-03-differential-equations-spring-2010/" target="_blank">https://ocw.mit.edu/courses/mathematics/18-03-differential-equations-spring-2010/</a></li>
-                    <li>Paul's Online Math Notes: Differential Equations - <a href="https://tutorial.math.lamar.edu/classes/de/de.aspx" target="_blank">https://tutorial.math.lamar.edu/classes/de/de.aspx</a></li>
-                    <li>Wolfram MathWorld: Exact Differential Equation - <a href="https://mathworld.wolfram.com/ExactDifferentialEquation.html" target="_blank">https://mathworld.wolfram.com/ExactDifferentialEquation.html</a></li>
-                </ul>
-                
-                <h3>Video Lectures</h3>
-                <ul>
-                    <li>Professor Leonard: Differential Equations - <a href="https://www.youtube.com/playlist?list=PLDesaqWTN6EQ2J4vgsN1HyBeRADEh4Cw-" target="_blank">YouTube Playlist</a></li>
-                    <li>MIT 18.03 Differential Equations - <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP63oTpyxCMLKt_JmB0WtSZfG" target="_blank">YouTube Playlist</a></li>
-                    <li>Exact Differential Equations by PatrickJMT - <a href="https://www.youtube.com/watch?v=Pb04ntcDJcQ" target="_blank">YouTube Video</a></li>
-                </ul>
-                
-                <h3>Research Papers</h3>
-                <ul>
-                    <li>Davis, H. T. (1962). Introduction to Nonlinear Differential and Integral Equations. Dover Publications.</li>
-                    <li>Ince, E. L. (1956). Ordinary Differential Equations. Dover Publications.</li>
-                    <li>Arnold, V. I. (1992). Ordinary Differential Equations. Springer-Verlag.</li>
-                </ul>
-            </div>
-
-            <!-- Contributors Section Content -->
-            <div class="section-content contributors-content" id="contributors-content">
-                <h3>Project Team</h3>
-                <p>This virtual lab was developed by the Applied Sciences & Humanities Department at Pimpri Chinchwad College of Engineering.</p>
-                
-                <div class="contributor-list">
-                    <div class="contributor-card">
-                        <img src="image/piyush.jpg.png" alt="Piyush Patil">
-                        <h4>Piyush Patil</h4>
-                    </div>
+                <!-- Posttest Section Content -->
+                <div class="section-content posttest-content" id="posttest-content">
+                    <h3>Post-Experiment Assessment</h3>
+                    <p>Test your understanding after completing the simulation. Select the correct answer for each question.</p>
                     
-                    <div class="contributor-card">
-                        <img src="image/pawan.jpg.png" alt="Pawan Koshti">
-                        <h4>Pawan Koshti</h4>    
-                    </div>
-                    
-                    <div class="contributor-card">
-                        <img src="image/pratham.jpg.png" alt="Pratham Gupta">
-                        <h4>Pratham Gupta</h4>
-                    </div>
-                    
-                    <div class="contributor-card">
-                        <img src="image/hariom.jpg.png" alt="Hariom Ugale">
-                        <h4>Hariom Ugale</h4>
-                    </div>
-                </div>
-                
-                <h3>Student Contributors</h3>
-                <ul>
-                    <li>Piyush Patil - UI/UX Design</li>
-                    <li>Pratham Gupta - Content Review</li>
-                    <li>Pawan Koshti- Testing & Feedback</li>
-                    <li>Hariom Ugale - Documentation</li>
-                </ul>
-                
-                <h3>Acknowledgments</h3>
-                <p>We would like to thank the Virtual Labs initiative by the Ministry of Education, Government of India, for providing the framework and support for developing this educational resource.</p>
-                
-                <h3>Contact Information</h3>
-                <p>For queries, suggestions, or feedback, please contact:</p>
-                <p><strong>Department of Applied Sciences & Humanities</strong><br>
-                Pimpri Chinchwad College of Engineering<br>
-                Pune, Maharashtra 411044<br>
-                Email: piyush.patil25@pccoepune.org<br>
-                Email: pawan.koshti25@pccoepune.org<br>
-                Email: hariom.ugale25@pccoepune.org<br>
-                Email: pratham.gupta25@pccoepune.org<br>
-            </div>
-
-            <!-- Feedback Section Content -->
-            <div class="section-content feedback-content" id="feedback-content">
-                <h3>Feedback Form</h3>
-                <p>Your feedback is valuable to us. Please take a moment to share your experience with this virtual lab.</p>
-                
-                <div class="feedback-form">
-                    <div class="form-row">
-                        <label for="feedback-name">Full Name:</label>
-                        <input type="text" id="feedback-name" placeholder="Enter your name">
-                    </div>
-                    
-                    <div class="form-row">
-                        <label for="feedback-email">Email Address:</label>
-                        <input type="email" id="feedback-email" placeholder="Enter your email">
-                    </div>
-                    
-                    <div class="form-row">
-                        <label for="feedback-role">Your Role:</label>
-                        <select id="feedback-role" style="width: 100%; padding: 12px 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;">
-                            <option value="">Select your role</option>
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher/Professor</option>
-                            <option value="researcher">Researcher</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-row">
-                        <label>Rate your overall experience:</label>
-                        <div class="rating">
-                            <i class="far fa-star" data-value="1"></i>
-                            <i class="far fa-star" data-value="2"></i>
-                            <i class="far fa-star" data-value="3"></i>
-                            <i class="far fa-star" data-value="4"></i>
-                            <i class="far fa-star" data-value="5"></i>
+                    <div class="question">
+                        <h4>Question 1: For the equation (3x²y + y³)dx + (x³ + 3xy²)dy = 0, what is ∂M/∂y?</h4>
+                        <div class="options">
+                            <div class="option">3x²</div>
+                            <div class="option" data-correct="true">3x² + 3y²</div>
+                            <div class="option">3y²</div>
+                            <div class="option">6xy</div>
                         </div>
                     </div>
                     
-                    <div class="form-row">
-                        <label for="feedback-comments">Comments/Suggestions:</label>
-                        <textarea id="feedback-comments" rows="5" placeholder="Please provide your detailed feedback here..."></textarea>
+                    <div class="question">
+                        <h4>Question 2: If M(x,y) = 2xy and N(x,y) = x², is the equation exact?</h4>
+                        <div class="options">
+                            <div class="option" data-correct="true">Yes, because ∂M/∂y = 2x and ∂N/∂x = 2x</div>
+                            <div class="option">No, because ∂M/∂y ≠ ∂N/∂x</div>
+                            <div class="option">Only for specific values of x and y</div>
+                            <div class="option">Cannot be determined</div>
+                        </div>
                     </div>
                     
-                    <div class="form-row">
-                        <label>
-                            <input type="checkbox" id="feedback-consent" style="margin-right: 10px;">
-                            I consent to having my feedback used for improving this virtual lab
-                        </label>
+                    <div class="question">
+                        <h4>Question 3: In the solution of an exact differential equation, what does g(y) represent?</h4>
+                        <div class="options">
+                            <div class="option">The derivative of M with respect to y</div>
+                            <div class="option">The constant of integration when integrating N</div>
+                            <div class="option" data-correct="true">The "constant" of integration when integrating M with respect to x</div>
+                            <div class="option">The solution of the differential equation</div>
+                        </div>
                     </div>
                     
-                    <button class="submit-btn" id="submit-feedback">Submit Feedback</button>
+                    <div class="question">
+                        <h4>Question 4: What is the general solution of an exact differential equation?</h4>
+                        <div class="options">
+                            <div class="option">y = f(x) + C</div>
+                            <div class="option">M(x,y) = N(x,y)</div>
+                            <div class="option" data-correct="true">ψ(x,y) = C, where C is a constant</div>
+                            <div class="option">∂ψ/∂x = 0</div>
+                        </div>
+                    </div>
+                    
+                    <button class="submit-btn" id="submit-posttest">Submit Posttest</button>
+                    <div id="posttest-result" style="display: none; margin-top: 20px; padding: 15px; background-color: #e8f4fc; border-radius: 8px;"></div>
                 </div>
-                
-                <h3>What happens with your feedback?</h3>
-                <ul>
-                    <li>Your suggestions will be reviewed by our development team</li>
-                    <li>We will use your feedback to improve the virtual lab</li>
-                    <li>You may receive a follow-up email if you provide your contact information</li>
-                    <li>Aggregated feedback will be used in our project reports</li>
-                </ul>
-                
-                <h3>Other Ways to Provide Feedback</h3>
-                <p>If you prefer, you can also email your feedback directly to: <strong>feedback.virtuallabs@pccegoa.org</strong></p>
+
+                <!-- References Section Content -->
+                <div class="section-content references-content" id="references-content">
+                    <h3>Recommended Textbooks</h3>
+                    <ul>
+                        <li>Boyce, W. E., & DiPrima, R. C. (2012). Elementary Differential Equations and Boundary Value Problems. John Wiley & Sons.</li>
+                        <li>Zill, D. G. (2012). A First Course in Differential Equations with Modeling Applications. Cengage Learning.</li>
+                        <li>Kreyszig, E. (2011). Advanced Engineering Mathematics. John Wiley & Sons.</li>
+                        <li>Simmons, G. F. (2016). Differential Equations with Applications and Historical Notes. CRC Press.</li>
+                    </ul>
+                    
+                    <h3>Online Resources</h3>
+                    <ul>
+                        <li>Khan Academy: Differential Equations - <a href="https://www.khanacademy.org/math/differential-equations" target="_blank">https://www.khanacademy.org/math/differential-equations</a></li>
+                        <li>MIT OpenCourseWare: Differential Equations - <a href="https://ocw.mit.edu/courses/mathematics/18-03-differential-equations-spring-2010/" target="_blank">https://ocw.mit.edu/courses/mathematics/18-03-differential-equations-spring-2010/</a></li>
+                        <li>Paul's Online Math Notes: Differential Equations - <a href="https://tutorial.math.lamar.edu/classes/de/de.aspx" target="_blank">https://tutorial.math.lamar.edu/classes/de/de.aspx</a></li>
+                        <li>Wolfram MathWorld: Exact Differential Equation - <a href="https://mathworld.wolfram.com/ExactDifferentialEquation.html" target="_blank">https://mathworld.wolfram.com/ExactDifferentialEquation.html</a></li>
+                    </ul>
+                    
+                    <h3>Video Lectures</h3>
+                    <ul>
+                        <li>Professor Leonard: Differential Equations - <a href="https://www.youtube.com/playlist?list=PLDesaqWTN6EQ2J4vgsN1HyBeRADEh4Cw-" target="_blank">YouTube Playlist</a></li>
+                        <li>MIT 18.03 Differential Equations - <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP63oTpyxCMLKt_JmB0WtSZfG" target="_blank">YouTube Playlist</a></li>
+                        <li>Exact Differential Equations by PatrickJMT - <a href="https://www.youtube.com/watch?v=Pb04ntcDJcQ" target="_blank">YouTube Video</a></li>
+                    </ul>
+                    
+                    <h3>Research Papers</h3>
+                    <ul>
+                        <li>Davis, H. T. (1962). Introduction to Nonlinear Differential and Integral Equations. Dover Publications.</li>
+                        <li>Ince, E. L. (1956). Ordinary Differential Equations. Dover Publications.</li>
+                        <li>Arnold, V. I. (1992). Ordinary Differential Equations. Springer-Verlag.</li>
+                    </ul>
+                </div>
+
+                <!-- Contributors Section Content -->
+                <div class="section-content contributors-content" id="contributors-content">
+                    <h3>Project Team</h3>
+                    <p>This virtual lab was developed by the Applied Sciences & Humanities Department at Pimpri Chinchwad College of Engineering.</p>
+                    
+                    <div class="contributor-list">
+                        <div class="contributor-card">
+                            <img src="image/piyush.jpg.png" alt="Piyush Patil">
+                            <h4>Piyush Patil</h4>
+                            <h4>PRN: 125B1F132</h4>
+                        </div>
+                        
+                        <div class="contributor-card">
+                            <img src="image/pawan.jpg.png" alt="Pawan Koshti">
+                            <h4>Pawan Koshti</h4>
+                            <h4>PRN: 125B1F079</h4>
+                        </div>
+                        
+                        <div class="contributor-card">
+                            <img src="image/pratham.jpg.png" alt="Pratham Gupta">
+                            <h4>Pratham Gupta</h4>
+                            <h4>PRN: 125B1F125</h4>
+                        </div>
+                        
+                        <div class="contributor-card">
+                            <img src="image/hariom.jpg.png" alt="Hariom Ugale">
+                            <h4>Hariom Ugale</h4>
+                            <h4>PRN: 125B1F083</h4>
+                        </div>
+                    </div>
+                    
+                    <h3>Subject Guide</h3>
+                    <div class="contributor-card" style="max-width: 300px; margin: 20px auto;">
+                        <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+                            <H3>Subject Guide and Mentor</H3>
+                        </div>
+                        <img src="image/dinesh.jpg.png" alt="Prof. Dinesh B. Kute">
+                        <H2>Prof. Dinesh B. Kute</H2>
+                        <p><H4>Subject Guide and Mentor</H4></p>
+                        <p><H4>dinesh.kute@pccoepune.org</H4></p>
+                        <p><H4>Applied Sciences & Humanities Department</H4></p>
+                        <p><H4>Pimpri Chinchwad College of Engineering</H4></p>
+                    </div>
+                    
+                    <h3>Student Contributors</h3>
+                    <ul>
+                        <li>Piyush Patil - UI/UX Design</li>
+                        <li>Pratham Gupta - Content Review</li>
+                        <li>Pawan Koshti - Testing & Feedback</li>
+                        <li>Hariom Ugale - Documentation</li>
+                    </ul>
+                    
+                    <h3>Acknowledgments</h3>
+                    <p>We would like to thank the Virtual Labs initiative by the Ministry of Education, Government of India, for providing the framework and support for developing this educational resource.</p>
+                    
+                    <h3>Contact Information</h3>
+                    <p>For queries, suggestions, or feedback, please contact:</p>
+                    <p><strong>Department of Applied Sciences & Humanities</strong><br>
+                    Pimpri Chinchwad College of Engineering<br>
+                    Pune, Maharashtra 411044<br>
+                    Email: piyush.patil25@pccoepune.org<br>
+                    Email: pawan.koshti25@pccoepune.org<br>
+                    Email: hariom.ugale25@pccoepune.org<br>
+                    Email: pratham.gupta25@pccoepune.org<br></p>
+                </div>
+
+                <!-- Feedback Section Content -->
+                <div class="section-content feedback-content" id="feedback-content">
+                    <h3>Feedback Form</h3>
+                    <p>Your feedback is valuable to us. Please take a moment to share your experience with this virtual lab.</p>
+                    
+                    <div class="feedback-form">
+                        <div class="form-row">
+                            <label for="feedback-name">Full Name:</label>
+                            <input type="text" id="feedback-name" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="feedback-email">Email Address:</label>
+                            <input type="email" id="feedback-email" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="feedback-role">Your Role:</label>
+                            <select id="feedback-role" style="width: 100%; padding: 12px 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;">
+                                <option value="">Select your role</option>
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher/Professor</option>
+                                <option value="researcher">Researcher</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>Rate your overall experience:</label>
+                            <div class="rating">
+                                <i class="far fa-star" data-value="1"></i>
+                                <i class="far fa-star" data-value="2"></i>
+                                <i class="far fa-star" data-value="3"></i>
+                                <i class="far fa-star" data-value="4"></i>
+                                <i class="far fa-star" data-value="5"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="feedback-comments">Comments/Suggestions:</label>
+                            <textarea id="feedback-comments" rows="5" placeholder="Please provide your detailed feedback here..."></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <input type="checkbox" id="feedback-consent" style="margin-right: 10px;">
+                                I consent to having my feedback used for improving this virtual lab
+                            </label>
+                        </div>
+                        
+                        <button class="submit-btn" id="submit-feedback">Submit Feedback</button>
+                    </div>
+                    
+                    <h3>What happens with your feedback?</h3>
+                    <ul>
+                        <li>Your suggestions will be reviewed by our development team</li>
+                        <li>We will use your feedback to improve the virtual lab</li>
+                        <li>You may receive a follow-up email if you provide your contact information</li>
+                        <li>Aggregated feedback will be used in our project reports</li>
+                    </ul>
+                    
+                    <h3>Other Ways to Provide Feedback</h3>
+                    <p>If you prefer, you can also email your feedback directly to: <strong>feedback.virtuallabs@pccegoa.org</strong></p>
+                </div>
             </div>
         </main>
     </div>
@@ -1279,43 +1532,88 @@
             }, 2000);
         });
 
-        // Navigation menu interaction
+        // DOM Elements
+        const startPage = document.getElementById('start-page');
+        const labSections = document.getElementById('lab-sections');
+        const sidebar = document.getElementById('sidebar');
+        const startLabBtn = document.getElementById('start-lab-btn');
+        const goHomeBtn = document.getElementById('go-home-btn');
+        const breadcrumbHome = document.getElementById('breadcrumb-home');
         const navItems = document.querySelectorAll('.nav-item');
         const sectionContents = document.querySelectorAll('.section-content');
-        
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Update active nav item
-                navItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                
-                // Show corresponding content
-                const sectionId = item.getAttribute('data-section') + '-content';
-                sectionContents.forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(sectionId).classList.add('active');
-            });
+
+        // Function to show lab sections and hide start page
+        function showLabSections() {
+            startPage.style.display = 'none';
+            labSections.style.display = 'block';
+            sidebar.classList.add('visible');
+        }
+
+        // Function to show start page and hide lab sections
+        function showStartPage() {
+            startPage.style.display = 'flex';
+            labSections.style.display = 'none';
+            sidebar.classList.remove('visible');
+        }
+
+        // Event Listeners
+        // Launch Exact DE Solver button
+        startLabBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showLabSections();
+            // Activate simulation section by default
+            activateSection('simulation');
         });
 
-        // Section cards interaction (for the top cards)
-        const sectionCards = document.querySelectorAll('.section-card');
-        sectionCards.forEach(card => {
-            card.addEventListener('click', () => {
-                sectionCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-                
-                // Get section name and navigate to it
-                const sectionName = card.querySelector('h3').textContent.toLowerCase();
-                const navItem = document.querySelector(`.nav-item[data-section="${sectionName}"]`);
-                if (navItem) {
-                    navItem.click();
+        // Back to Home button in sidebar
+        goHomeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showStartPage();
+        });
+
+        // Home breadcrumb
+        breadcrumbHome.addEventListener('click', function(e) {
+            e.preventDefault();
+            showStartPage();
+        });
+
+        // Function to activate a specific section
+        function activateSection(sectionName) {
+            // Update active nav item
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-section') === sectionName) {
+                    item.classList.add('active');
                 }
             });
+            
+            // Show corresponding content
+            sectionContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(sectionName + '-content').classList.add('active');
+        }
+
+        // Navigation menu interaction
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sectionId = item.getAttribute('data-section');
+                activateSection(sectionId);
+            });
         });
 
+        // [Rest of your existing JavaScript for pretest, posttest, solver, etc. remains the same]
+        // Only initialize the start page when window loads
+        window.onload = function() {
+            // Ensure start page is shown
+            showStartPage();
+            // Load example for simulation if needed
+            loadExample(0);
+        };
+
+        // [Include all your existing JavaScript functions for the solver, tests, etc.]
         // Pretest functionality
-        document.getElementById('submit-pretest').addEventListener('click', function() {
+        document.getElementById('submit-pretest')?.addEventListener('click', function() {
             const options = document.querySelectorAll('.pretest-content .option');
             let score = 0;
             let total = 0;
@@ -1351,7 +1649,7 @@
         });
         
         // Posttest functionality
-        document.getElementById('submit-posttest').addEventListener('click', function() {
+        document.getElementById('submit-posttest')?.addEventListener('click', function() {
             const options = document.querySelectorAll('.posttest-content .option');
             let score = 0;
             let total = 0;
@@ -1419,7 +1717,7 @@
         });
 
         // Feedback submission
-        document.getElementById('submit-feedback').addEventListener('click', function() {
+        document.getElementById('submit-feedback')?.addEventListener('click', function() {
             const name = document.getElementById('feedback-name').value;
             const email = document.getElementById('feedback-email').value;
             const comments = document.getElementById('feedback-comments').value;
@@ -1839,12 +2137,6 @@
                 </div>
             `;
         }
-
-        // Initialize with example 1 and aim section
-        window.onload = function() {
-            loadExample(0);
-            document.querySelector('.nav-item[data-section="aim"]').click();
-        };
     </script>
 </body>
 </html>
